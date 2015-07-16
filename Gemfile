@@ -10,7 +10,7 @@ gem 'sinatra-activerecord'
 
 gem 'puma'
 gem 'tux'
-gem 'pg'
+gem 'sqlite3'
 
 group :development, :test do
   gem 'pry'

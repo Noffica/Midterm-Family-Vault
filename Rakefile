@@ -58,3 +58,23 @@ desc 'Drop all database tables'
 task "db:drop" do
   Rake::Task['db:drop'].invoke
 end
+
+task "db:seed" do
+  puts "This command **drops all tables**, recreates them THEN populates them with seed data."
+
+  puts "ALL tables are dropped."
+  Rake::Task["db:drop"].invoke
+
+  puts "A new copy of the database is created."
+  Rake::Task["db:create"].invoke
+
+  puts "Seed data is added."
+  user_1 = User.create!(name: "Fox McWolf", email: "fox@wolf.edu")
+  user_2 = ...
+
+  vault_1 = Vault.create!(name: "Family", password: "a")
+  vault_2 = Vault.create!(name: "Midterm mates", password: "a")
+  vault_3 = Vault.create!(name: "In-laws", password: "a")
+
+  user_1.
+end
