@@ -6,15 +6,15 @@ Rake::Task["db:create"].clear
 Rake::Task["db:drop"].clear
 
 # NOTE: Assumes SQLite3 DB
-desc "create the database"
-task "db:create" do
-  touch 'db/db.sqlite3'
-end
+# desc "create the database"
+# task "db:create" do
+#   touch 'db/db.sqlite3'
+# end
 
-desc "drop the database"
-task "db:drop" do
-  rm_f 'db/db.sqlite3'
-end
+# desc "drop the database"
+# task "db:drop" do
+#   rm_f 'db/db.sqlite3'
+# end
 
 task 'db:create_migration' do
   unless ENV["NAME"]

@@ -5,8 +5,11 @@ configure do
   end
 
   set :database, {
-    adapter: "sqlite3",
-    database: "db/db.sqlite3"
+    adapter: "postgresql",
+    database: "Family-Vault-development",
+    host: "localhost",
+    username: "development",
+    password: "development"
   }
 
   # Load all models from app/models, using autoload instead of require
