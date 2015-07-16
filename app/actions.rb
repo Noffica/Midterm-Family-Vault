@@ -1,9 +1,9 @@
 
 # Retrieves the current_user object before each of these paths
-['/user'].each do |path|
+['/user', '/user/text_post/new'].each do |path|
     before path do
         # The session[:current_user_id] is hard coded in configure for now
-        session[:current_user_id] = 2
+        # session[:current_user_id] = 2
         @current_user = User.find(session[:current_user_id])
     end
 end
@@ -22,12 +22,12 @@ post '/login' do
   if logging_user = User.find_by(email: params[:email])
     # if params[:password] == logging_user.password 
       session[:current_user_id] = logging_user.id
-      redirect to('/user')
+      redirect '/user'
   #   else
   #     erb :'login'
   #   end 
   # else
-    erb :'login'
+    # erb :'login'
   end
 end
 

@@ -1,0 +1,19 @@
+<h1>So.. you'd like to add a new post?</h1>
+<hr/>
+
+  <form method="post" action="/user/text_post">
+    <label>Title:<label>
+      <input type="text" placeholder="title" name="title">
+    <label>Body:</label>
+      <input type="text" placeholder="Tell me something...." name="body">
+    <label>email:</label>
+      <input type="text" class="form-control" placeholder="email address" name="email">
+    <label> Which Vault should It go to?</label>
+      
+    <select id="vault_list">
+      <option><%= @current_user.name %> </option>
+      <option>vault2</option>
+      </select>
+
+    <button type="submit" class="btn btn-default">Add me!</button>
+  </form>
