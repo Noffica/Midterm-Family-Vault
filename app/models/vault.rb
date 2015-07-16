@@ -11,5 +11,4 @@ class Vault < ActiveRecord::Base
 
   validates   :password,
               presence: true
-
 end

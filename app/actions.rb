@@ -3,7 +3,6 @@
 ['/user'].each do |path|
     before path do
         # The session[:current_user_id] is hard coded in configure for now
-        session[:current_user_id] = 2
         @current_user = User.find(session[:current_user_id])
     end
 end
@@ -22,12 +21,12 @@ post '/login' do
   if logging_user = User.find_by(email: params[:email])
     # if params[:password] == logging_user.password 
       session[:current_user_id] = logging_user.id
-      redirect to('/user')
+      redirect '/user'
   #   else
   #     erb :'login'
   #   end 
   # else
-    erb :'login'
+    # erb :'login'
   end
 end
 
@@ -49,11 +48,21 @@ end
 
 # (submits form values to UserVaultRelations table)
 post '/user/user_vault' do
-  UserVaultRelation.create(
-    user_id: session[:current_user_id], 
-    vault_id: params[:vault_id])
+  @vault = Vault.find_by(name: params[:name])
+  if @vault
+    if params[:password] == @vault.password 
 
-  redirect '../user'
+      UserVaultRelation.create(
+        user_id: session[:current_user_id], 
+        vault_id: @vault.id)
+
+      redirect '../user'
+    else
+      erb :'/user/user_vault/new'
+    end 
+  else
+    erb :'/user/user_vault/new'
+  end  
 end
 
 
@@ -99,17 +108,22 @@ end
 
 # (submit vault, create in db)
 post '/vault' do
-  vault = Vault.create(
+  @vault = Vault.new(
     name: params[:name],
     password: params[:password])
 
   # TO DO: Use callback instead in Vault class
   # sets the UserVaultRelation for the user and the created vault
-  UserVaultRelation.create(
-    user_id: session[:current_user_id], 
-    vault: vault)
+  # UserVaultRelation.create(
+  #   user_id: session[:current_user_id], 
+  #   vault: @vault)
+  if @vault.save
+    redirect '/user'
+  else
+    erb :'vault/new'
+  end
 
-  redirect '/user'
+  
 end
 
 # (loads a vault of a user that he/she has access to)
