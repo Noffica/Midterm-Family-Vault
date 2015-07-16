@@ -84,7 +84,7 @@ post '/user/text_post' do
   TextPost.create(
     title: params[:title],
     body: params[:body],
-    valut_id: params[:vaut_id],
+    vault_id: params[:vault_id],
     user_id: session[:current_user_id])
 
   redirect '../user'
