@@ -2,18 +2,17 @@
 <hr/>
 
   <form method="post" action="/user/text_post">
-    <label>Title:<label>
+    <label>Title:</label>
       <input type="text" placeholder="title" name="title">
     <label>Body:</label>
       <input type="text" placeholder="Tell me something...." name="body">
-    <label>email:</label>
-      <input type="text" class="form-control" placeholder="email address" name="email">
     <label> Which Vault should It go to?</label>
-      
-    <select id="vault_list">
-      <option><%= @current_user.name %> </option>
-      <option>vault2</option>
-      </select>
+      <select name ="vault_id">
+        <% @current_user.vault_ids.each do |vault| %>
+        <option value="<%= vault %>"> <%= Vault.find(vault).name %> </option>
+        <% end %>
+    </select>
 
-    <button type="submit" class="btn btn-default">Add me!</button>
+    <button type="submit"> Add me!</button>
   </form>
+
