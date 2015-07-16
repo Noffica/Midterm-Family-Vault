@@ -2,8 +2,9 @@ require 'rake'
 require "sinatra/activerecord/rake"
 require ::File.expand_path('../config/environment', __FILE__)
 
-Rake::Task["db:create"].clear
 Rake::Task["db:drop"].clear
+Rake::Task["db:create"].clear
+# Rake::Task["db:seed"].clear
 
 # An SQLite3 DB:
 desc "create the database"
@@ -13,6 +14,7 @@ end
 
 desc "drop the database"
 task "db:drop" do
+  puts "'dropping now."
   rm_f 'db/db.sqlite3'
 end
 
@@ -54,27 +56,6 @@ task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
 end
 
-desc 'Drop all database tables'
-task "db:drop" do
-  Rake::Task['db:drop'].invoke
-end
-
-task "db:seed" do
-  puts "This command **drops all tables**, recreates them THEN populates them with seed data."
-
-  puts "ALL tables are dropped."
-  Rake::Task["db:drop"].invoke
-
-  puts "A new copy of the database is created."
-  Rake::Task["db:create"].invoke
-
-  puts "Seed data is added."
-  user_1 = User.create!(name: "Fox McWolf", email: "fox@wolf.edu")
-  user_2 = ...
-
-  vault_1 = Vault.create!(name: "Family", password: "a")
-  vault_2 = Vault.create!(name: "Midterm mates", password: "a")
-  vault_3 = Vault.create!(name: "In-laws", password: "a")
-
-  user_1.
+desc 'Drop all tables, re-create the database, add the seed data.'
+task :"db:repopulate" => [:"db:drop", :"db:create", :"db:migrate", :"db:seed"] do
 end
