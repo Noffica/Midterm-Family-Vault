@@ -2,19 +2,21 @@ require 'rake'
 require "sinatra/activerecord/rake"
 require ::File.expand_path('../config/environment', __FILE__)
 
-Rake::Task["db:create"].clear
 Rake::Task["db:drop"].clear
+Rake::Task["db:create"].clear
+# Rake::Task["db:seed"].clear
 
-# NOTE: Assumes SQLite3 DB
-# desc "create the database"
-# task "db:create" do
-#   touch 'db/db.sqlite3'
-# end
+# An SQLite3 DB:
+desc "create the database"
+task "db:create" do
+  touch 'db/db.sqlite3'
+end
 
-# desc "drop the database"
-# task "db:drop" do
-#   rm_f 'db/db.sqlite3'
-# end
+desc "drop the database"
+task "db:drop" do
+  puts "'dropping now."
+  rm_f 'db/db.sqlite3'
+end
 
 task 'db:create_migration' do
   unless ENV["NAME"]
@@ -52,4 +54,8 @@ end
 desc 'Retrieves the current schema version number'
 task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
+end
+
+desc 'Drop all tables, re-create the database, add the seed data.'
+task :"db:repopulate" => [:"db:drop", :"db:create", :"db:migrate", :"db:seed"] do
 end

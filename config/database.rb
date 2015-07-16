@@ -4,12 +4,19 @@ configure do
     ActiveRecord::Base.logger = Logger.new(STDOUT)
   end
 
+# Setup a local PostgreSQL database
+  # set :database, {
+  #   adapter: "postgresql",
+  #   database: "Family-Vault-development",
+  #   host: "localhost",
+  #   username: "development",
+  #   password: "development"
+  # }
+
+# Setup a local SQLite3 database
   set :database, {
-    adapter: "postgresql",
-    database: "Family-Vault-development",
-    host: "localhost",
-    username: "development",
-    password: "development"
+    adapter: "sqlite3",
+    database: "db/db.sqlite3"
   }
 
   # Load all models from app/models, using autoload instead of require
