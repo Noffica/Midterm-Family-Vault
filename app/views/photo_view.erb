@@ -1,0 +1,12 @@
+<h1> checkout these pictures </h1>
+
+
+<% current_user.vault_ids.each do |x| %>
+  <% if PhotoPost.find_by(vault_id: x) %>
+    <% PhotoPost.where(vault_id: x).find_each do |post| %>
+      <div>
+        <img src='/images/<%= post[:file_path] %>' />
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
