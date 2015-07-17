@@ -8,6 +8,7 @@
 
 <!-- Dropdown: Profile & Logout -->
 <ul id="dropdown1" class="dropdown-content">
+  <li><a href="#">Profile</a></li>
   <li><a href="../logout">Logout</a></li>
 </ul>
 
@@ -21,8 +22,8 @@
 
 <div class="navbar-fixed">
   <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Vaulty</a>
+    <div class="nav-wrapper light-blue">
+      <a href="/user" class="brand-logo">Vaulty</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
       <ul class="right hide-on-med-and-down">
@@ -47,15 +48,11 @@
 
 <div class="container">
 
-  <h4>Hey hey how you doin <%= @current_user.name %>? :)</h4>
 
-
-
-  <br><br><br><br>
 
   <!-- User adds new content -->
   <div>
-    <h4>+ Add new:</h4>
+    <p>+ Add new:</p>
     <select onChange="window.location.href=this.value">
       <option value="">+ Add New</option>
       <option value="user/photo_post/new">Photo</option>
@@ -64,20 +61,10 @@
     </select>
   </div>
 
-  <br><br><br><br>
-
-
-  <!-- User join a vault (UserVaultRelation) -->
-  <div>
-    <h5><a href="user/user_vault/new" role="button">Join a Vault</a></h5>
-  </div>
-
-
-  <br><br><br><br>
 
   <!-- Show content from users all vaults -->
   <div>
-    <h4>Show all content from vaults you belong to:</h4>
+    <p>Show all content from vaults you belong to:</p>
     <% if @photo_posts %>
       <% @photo_posts.each do |photo_post| %>
         <div class="photo_posts">
@@ -90,18 +77,39 @@
     <% end %>
   </div>
 
-  <br><br><br><br>
+  <div class="row">
+     <div class="col s12 m6">
+       <div class="card medium">
+         <div class="card-image">
+           <img src="http://materializecss.com/images/sample-1.jpg">
+           <span class="card-title">Card Title</span>
+         </div>
+         <div class="card-content">
+           <p>I am a very simple card. I am good at containing small bits of information.</p>
+         </div>
+         <div class="card-action">
+           <a href="#">This is a link</a>
+         </div>
+       </div>
+     </div>
 
-  <!--     NEED FIX! -->
-  <!-- Adding the option to go to individual vault pages -->
-  <div>
-    <h4>Choose a single vault you want to see:</h4>
-      <select onChange="window.location.href=this.value">
-      <option value="user">All Vaults</option>
-
-
-    </select>
+    <div class="col s12 m6">
+       <div class="card medium">
+         <div class="card-image">
+           <img src="http://materializecss.com/images/sample-1.jpg">
+           <span class="card-title">Card Title</span>
+         </div>
+         <div class="card-content">
+           <p>I am convenient because I require little markup to use effectively.</p>
+         </div>
+         <div class="card-action">
+           <a href="#">This is a link</a>
+         </div>
+       </div>
+     </div>
   </div>
+
+
 
   <br><br><br><br>
 
