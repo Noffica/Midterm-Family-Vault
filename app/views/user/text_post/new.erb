@@ -1,0 +1,17 @@
+<h1>So.. you'd like to add a new post?</h1>
+<hr/>
+
+  <form method="post" action="/user/text_post">
+    <label>Title:</label>
+      <input type="text" placeholder="title" name="title">
+    <label>Body:</label>
+      <input type="text" placeholder="Tell me something...." name="body">
+    <label> Which Vault should It go to?</label>
+      <select name ="vault_id">
+        <% @current_user.vault_ids.each do |id_vault| %>
+        <option value="<%= id_vault %>"> <%= Vault.find(id_vault).name %> </option>
+        <% end %>
+    </select>
+
+    <button type="submit"> Add me!</button>
+  </form>

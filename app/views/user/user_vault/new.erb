@@ -1,0 +1,29 @@
+<h1>Join a Vault</h1>
+
+
+<form method="post" action="/user/user_vault" class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-1">Vault name:</label>
+    <div class="col-xs-4">
+      <input class="form-control" type="text" name="name">
+    </div>
+  </div>  
+
+  <div class="form-group">
+    <label class="col-sm-1">Invitation code:</label>
+    <p>(Ask the creator of this vault for the code)</p>
+    <div class="col-xs-4">
+      <input class="form-control" type="text" name="password">
+    </div>
+  </div>
+
+  <br>
+  <div class="form-group">
+    <div class="col-sm-10">
+      <input class="btn btn-primary" type="submit" value="Submit">
+    </div>
+  </div>
+</form>
+
+<hr/>
+<a href="/user" class="btn btn-default">Back to your vaults</a>
