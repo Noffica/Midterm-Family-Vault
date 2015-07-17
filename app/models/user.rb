@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  
   has_many :user_vault_relations
   has_many :vaults, through: :user_vault_relations
 
@@ -9,10 +10,13 @@ class User < ActiveRecord::Base
                       presence: true,
                       length: { maximum: 80 }
 
-  validates_format_of :email,
-                      :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates           :password,
+                      presence: true
 
   validates           :email,
                       uniqueness: true
+
+  validates_format_of :email,
+                      :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
 end
