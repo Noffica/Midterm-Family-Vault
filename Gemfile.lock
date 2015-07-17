@@ -14,11 +14,20 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (6.0.2)
     backports (3.6.5)
     bond (0.5.1)
     builder (3.2.2)
+    carrierwave (0.8.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+    carrierwave-datamapper (0.2.2)
+      carrierwave (~> 0.8.0)
+      dm-core (~> 1.1)
     coderay (1.1.0)
+    dm-core (1.2.1)
+      addressable (~> 2.3)
     i18n (0.7.0)
     json (1.8.3)
     method_source (0.8.2)
@@ -76,6 +85,8 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  carrierwave
+  carrierwave-datamapper
   pry
   puma
   rake
@@ -85,3 +96,6 @@ DEPENDENCIES
   sinatra-contrib
   sqlite3
   tux
+
+BUNDLED WITH
+   1.10.5
