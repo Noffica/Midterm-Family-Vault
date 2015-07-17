@@ -1,6 +1,6 @@
 
 # Retrieves the current_user object before each of these paths
-['/user', '/user/text_post/new', '/user/photo_post/new'].each do |path|
+['/user', '/user/text_post/new', '/user/photo_post/new', '/photoview'].each do |path|
     before path do
         # The session[:current_user_id] is hard coded in configure for now
         @current_user = User.find(session[:current_user_id])
@@ -28,6 +28,10 @@ post '/login' do
   # else
     # erb :'login'
   end
+end
+
+get '/photoview' do
+  erb :'photoview'
 end
 
 

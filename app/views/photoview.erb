@@ -1,0 +1,8 @@
+<h1> checkout these pictures </h1>
+ 
+
+ <% @current_user.vault_ids.each do |x| %>
+<div>
+  <img src='/<%= PhotoPost.find_by(vault_id: x).file_path  if (PhotoPost.find_by(vault_id: x)) %>'>
+</div>
+<% end %> 
