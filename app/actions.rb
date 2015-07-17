@@ -1,6 +1,6 @@
 
 # Retrieves the current_user object before each of these paths
-['/user', '/user/text_post/new', '/user/photo_post/new', '/user/user_vault', '/user/user_vault/new', '/vault', '/vault/new', '/vault/:id'].each do |path|
+['/user', '/user/text_post', '/user/text_post/new', '/user/photo_post', '/user/photo_post/new', '/user/user_vault', '/user/user_vault/new', '/vault', '/vault/new', '/vault/:id'].each do |path|
     before path do
         @current_user = User.find(session[:current_user_id])
     end
