@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716031925) do
+ActiveRecord::Schema.define(version: 20150717003632) do
 
   create_table "photo_posts", force: :cascade do |t|
     t.string   "caption"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20150716031925) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password"
   end
 
   create_table "vaults", force: :cascade do |t|
