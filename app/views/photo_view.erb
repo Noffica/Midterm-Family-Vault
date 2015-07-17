@@ -1,9 +1,12 @@
 <h1> checkout these pictures </h1>
 
+
 <% current_user.vault_ids.each do |x| %>
   <% if PhotoPost.find_by(vault_id: x) %>
-    <div>
-      <img src='/images/<%= PhotoPost.find_by(vault_id: x)[:file_path] %>' />
-    </div>
+    <% PhotoPost.where(vault_id: x).find_each do |post| %>
+      <div>
+        <img src='/images/<%= post[:file_path] %>' />
+      </div>
+    <% end %>
   <% end %>
-<% end %> 
+<% end %>
