@@ -1,76 +1,111 @@
-<h3>Welcome to Vaulty</h3>
-<p>You are logged in as <%= @current_user.name %>.</p>
-
-
-<!-- Dropdown Structure -->
-<ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
+<!-- Dropdown Structure: Add New-->
+<ul id="dropdown2" class="dropdown-content">
+  <li><a href="user/photo_post/new">Photo</a></li>
+  <li><a href="user/text_post/new">Text</a></li>
   <li class="divider"></li>
-  <li><a href="#!">three</a></li>
+  <li><a href="/vault/new">Vault</a></li>
 </ul>
 
-<nav>
-  <div class="nav-wrapper">
-    <a href="#!" class="brand-logo">Vaulty</a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="sass.html">Sass</a></li>
-      <li><a href="badges.html">Components</a></li>
-      <!-- Dropdown Trigger -->
-      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-    </ul>
-  </div>
-</nav>
+<!-- Dropdown: Profile & Logout -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="../logout">Logout</a></li>
+</ul>
 
+<!-- Dropdown: Vaults -->
+<ul id="dropdown3" class="dropdown-content">
+  <li><a href="#">All</a></li>
+  <li><a href="#">T's family</a></li>
+  <li><a href="#">Cousins</a></li>
+  <li><a href="#">The Party Gang</a></li>
+</ul>
 
-<!-- User adds new content -->
-<div>
-  <h4>+ Add new:</h4>
-  <select onChange="window.location.href=this.value">
-    <option value="">+ Add New</option>
-    <option value="user/photo_post/new">Photo</option>
-    <option value="user/text_post/new">Text</option>
-    <option value="/vault/new">Vault</option>
-  </select>
-</div>
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Vaulty</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
-<br>
+      <ul class="right hide-on-med-and-down">
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown3"><i class="material-icons left">dashboard</i> See a Vault <i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown2"><i class="material-icons left">note_add</i> Add New <i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">perm_identity</i> <%= @current_user.name %> <i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
 
-
-<!-- User join a vault (UserVaultRelation) -->
-<div>
-  <h5><a href="user/user_vault/new" role="button">Join a Vault</a></h5>
-</div>
-
-
-<!-- Show content from users all vaults -->
-<div>
-  <h4>Show all content from vaults you belong to:</h4>
-  <% @photo_posts.each do |photo_post| %>
-    <div class="photo_posts">
-      <h4><%=  photo_post.caption %></h4>
-      <p>User: <%=  User.find(photo_post.user_id).name %> </p>
-      <p>File_path: <%= photo_post.file_path %></p>
-      <p>Created at: <%= photo_post.created_at %></p>
+<!-- NEED FIX: MOBILE VERSION! -->
+<!--       <ul class="side-nav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul> -->
+      
     </div>
-  <% end %>
+  </nav>
 </div>
 
 
-<!--     NEED FIX! -->
-<!-- Adding the option to go to individual vault pages -->
-<div>
-  <h4>Choose a single vault you want to see:</h4>
+<div class="container">
+
+  <h4>Hey hey how you doin <%= @current_user.name %>? :)</h4>
+
+
+
+  <br><br><br><br>
+
+  <!-- User adds new content -->
+  <div>
+    <h4>+ Add new:</h4>
     <select onChange="window.location.href=this.value">
-    <option value="user">All Vaults</option>
+      <option value="">+ Add New</option>
+      <option value="user/photo_post/new">Photo</option>
+      <option value="user/text_post/new">Text</option>
+      <option value="/vault/new">Vault</option>
+    </select>
+  </div>
+
+  <br><br><br><br>
 
 
-  </select>
-</div>
+  <!-- User join a vault (UserVaultRelation) -->
+  <div>
+    <h5><a href="user/user_vault/new" role="button">Join a Vault</a></h5>
+  </div>
 
 
-<hr/>
+  <br><br><br><br>
 
-<div>
-  <h5><a href="../logout" role="button">Logout</a></h5>
-</div>
+  <!-- Show content from users all vaults -->
+  <div>
+    <h4>Show all content from vaults you belong to:</h4>
+    <% if @photo_posts %>
+      <% @photo_posts.each do |photo_post| %>
+        <div class="photo_posts">
+          <h4><%=  photo_post.caption %></h4>
+          <p>User: <%=  User.find(photo_post.user_id).name %> </p>
+          <p>File_path: <%= photo_post.file_path %></p>
+          <p>Created at: <%= photo_post.created_at %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <br><br><br><br>
+
+  <!--     NEED FIX! -->
+  <!-- Adding the option to go to individual vault pages -->
+  <div>
+    <h4>Choose a single vault you want to see:</h4>
+      <select onChange="window.location.href=this.value">
+      <option value="user">All Vaults</option>
+
+
+    </select>
+  </div>
+
+  <br><br><br><br>
+
+
+
+
+<div class="container">
