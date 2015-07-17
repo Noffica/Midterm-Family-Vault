@@ -1,15 +1,14 @@
 
 # Retrieves the current_user object before each of these paths
-['/user', '/user/text_post/new', '/user/photo_post/new'].each do |path|
+['/user', '/user/text_post/new', '/user/photo_post/new', '/user/user_vault', '/user/user_vault/new', '/vault', '/vault/new'].each do |path|
     before path do
-        # The session[:current_user_id] is hard coded in configure for now
         @current_user = User.find(session[:current_user_id])
     end
 end
 
 # Homepage (Root path) (optional homepage before login)
 get '/' do
-  erb :index
+  redirect 'login'
 end
 
 get '/login' do
