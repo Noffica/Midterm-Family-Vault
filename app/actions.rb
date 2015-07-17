@@ -1,6 +1,6 @@
 
 # Retrieves the current_user object before each of these paths
-['/user', '/user/text_post/new', '/user/photo_post/new', '/user/user_vault', '/user/user_vault/new', '/vault', '/vault/new'].each do |path|
+['/user', '/user/text_post/new', '/user/photo_post/new', '/user/user_vault', '/user/user_vault/new', '/vault', '/vault/new', '/vault/:id'].each do |path|
     before path do
         @current_user = User.find(session[:current_user_id])
     end
@@ -12,7 +12,7 @@ get '/' do
 end
 
 get '/login' do
-  erb :'login'
+  erb :'login', :layout => false
 end
 
 post '/login' do
@@ -135,10 +135,15 @@ post '/vault' do
 end
 
 # (loads a vault of a user that he/she has access to)
+# To DO: Need to check if user has access!!
 get '/vault/:id' do
+  @photo_posts = []
+  @text_posts = []
 
-  # To DO: Need to check if user has access!!
   @vault = Vault.find(params[:id])
+  @photo_posts += (PhotoPost.where(vault_id: params[:id]))
+  @text_posts += (TextPost.where(vault_id: params[:id]))
+
 
   # if the vault id doesn't exist, give 404 not found error
   if @vault
