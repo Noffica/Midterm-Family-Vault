@@ -34,9 +34,12 @@ end
 # User page and setting user's vaults ===============================
 # (gets photos & text from user's vaults)
 get '/user' do
+  @photo_posts = []
+  @text_posts = []
+
   @current_user.vault_ids.each do |id|
-    @photo_posts = PhotoPost.where(vault_id: id)
-    @text_posts = TextPost.where(vault_id: id)
+    @photo_posts += (PhotoPost.where(vault_id: id))
+    @text_posts += (TextPost.where(vault_id: id))
   end
   erb :'user/index'
 end

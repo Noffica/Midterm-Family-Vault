@@ -8137,3 +8137,49 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 @media (min-height: 40.125em) {
   .picker--time .picker__box {
     margin-bottom: 5em; } }
+
+
+
+
+/* ==========================================================================
+   MATERIAL DESIGN ICONS (SELF HOSTING)
+   NEEDFIX: NOT WORKING, currently using Google API for icons;
+   ========================================================================== */
+/*@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(font/material-design-icons/MaterialIcons-Regular.eot);*/ /* For IE6-8 */
+/*  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url(font/material-design-icons/MaterialIcons-Regular.woff2) format('woff2'),
+       url(font/material-design-icons/MaterialIcons-Regular.woff) format('woff'),
+       url(font/material-design-icons/MaterialIcons-Regular.ttf) format('truetype');
+}*/
+
+
+
+/*.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;*/  /* Preferred icon size */
+/*  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;*/
+
+  /* Support for all WebKit browsers. */
+/*  -webkit-font-smoothing: antialiased;
+*/  /* Support for Safari and Chrome. */
+/*  text-rendering: optimizeLegibility;
+*/
+  /* Support for Firefox. */
+/*  -moz-osx-font-smoothing: grayscale;
+*/
+  /* Support for IE. */
+/*  font-feature-settings: 'liga';
+}*/

@@ -1,3 +1,5 @@
+<body class="grey lighten-4">
+
 <!-- Dropdown Structure: Add New-->
 <ul id="dropdown2" class="dropdown-content">
   <li><a href="user/photo_post/new">Photo</a></li>
@@ -22,7 +24,7 @@
 
 <div class="navbar-fixed">
   <nav>
-    <div class="nav-wrapper light-blue">
+    <div class="nav-wrapper indigo accent-2">
       <a href="/user" class="brand-logo">Vaulty</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
@@ -40,15 +42,12 @@
         <li><a href="collapsible.html">Javascript</a></li>
         <li><a href="mobile.html">Mobile</a></li>
       </ul> -->
-      
     </div>
   </nav>
 </div>
 
 
 <div class="container">
-
-
 
   <!-- User adds new content -->
   <div>
@@ -61,59 +60,35 @@
     </select>
   </div>
 
-
   <!-- Show content from users all vaults -->
   <div>
-    <p>Show all content from vaults you belong to:</p>
-    <% if @photo_posts %>
-      <% @photo_posts.each do |photo_post| %>
-        <div class="photo_posts">
-          <h4><%=  photo_post.caption %></h4>
-          <p>User: <%=  User.find(photo_post.user_id).name %> </p>
-          <p>File_path: <%= photo_post.file_path %></p>
-          <p>Created at: <%= photo_post.created_at %></p>
-        </div>
+    <div class="row">
+    <% if @text_posts %>
+      <% @text_posts.each do |text_post| %>
+        <!-- <div class="row"> -->
+          <div class="col s12 m6">
+            <div class="card white hoverable">
+
+                <div class="card-content">
+                  <span class="card-title cyan-text"><%=  text_post[:title] %></span>
+                  <p><%= text_post[:body] %></p>
+                </div>
+
+                <div class="card-action cyan white-text">
+                  <p>User: <%=  User.find(text_post[:user_id]).name %> </p>
+                  <p>Created at: <%= text_post[:created_at] %></p>
+                </div>
+
+            </div>
+          </div>
+        <!-- </div> -->
       <% end %>
     <% end %>
+    </div>
   </div>
 
-  <div class="row">
-     <div class="col s12 m6">
-       <div class="card medium">
-         <div class="card-image">
-           <img src="http://materializecss.com/images/sample-1.jpg">
-           <span class="card-title">Card Title</span>
-         </div>
-         <div class="card-content">
-           <p>I am a very simple card. I am good at containing small bits of information.</p>
-         </div>
-         <div class="card-action">
-           <a href="#">This is a link</a>
-         </div>
-       </div>
-     </div>
-
-    <div class="col s12 m6">
-       <div class="card medium">
-         <div class="card-image">
-           <img src="http://materializecss.com/images/sample-1.jpg">
-           <span class="card-title">Card Title</span>
-         </div>
-         <div class="card-content">
-           <p>I am convenient because I require little markup to use effectively.</p>
-         </div>
-         <div class="card-action">
-           <a href="#">This is a link</a>
-         </div>
-       </div>
-     </div>
-  </div>
+</div>
 
 
 
-  <br><br><br><br>
-
-
-
-
-<div class="container">
+</body>
