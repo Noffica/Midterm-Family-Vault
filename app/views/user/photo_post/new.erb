@@ -1,4 +1,4 @@
-<h1>So.. you'd like to add a new post?</h1>
+<h1>So.. you'd like to add a new Photo?</h1>
 <hr/>
 
   <form method="post" action="/user/photo_post">
@@ -8,8 +8,8 @@
       <input type="URL" placeholder="Insert URL here... SORTA..." name="file_path">
     <label> Which Vault should this picture go to?</label>
       <select name ="vault_id">
-        <% @current_user.vault_ids.each do |vault| %>
-        <option value="<%= vault %>"> <%= Vault.find(vault).name %> </option>
+        <% @current_user.vault_ids.each do |id_vault| %>
+        <option value="<%= id_vault %>"> <%= Vault.find(id_vault).name %> </option>
         <% end %>
     </select>
 

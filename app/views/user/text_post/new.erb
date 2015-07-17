@@ -8,8 +8,8 @@
       <input type="text" placeholder="Tell me something...." name="body">
     <label> Which Vault should It go to?</label>
       <select name ="vault_id">
-        <% @current_user.vault_ids.each do |vault| %>
-        <option value="<%= vault %>"> <%= Vault.find(vault).name %> </option>
+        <% @current_user.vault_ids.each do |id_vault| %>
+        <option value="<%= id_vault %>"> <%= Vault.find(id_vault).name %> </option>
         <% end %>
     </select>
 
