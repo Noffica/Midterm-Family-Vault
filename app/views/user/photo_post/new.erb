@@ -8,7 +8,7 @@
          <input type='file' placeholder="Insert URL here... SORTA..." name="file_path">
     <label> Which Vault should this picture go to?</label>
       <select name ="vault_id">
-        <% @current_user.vault_ids.each do |id_vault| %>
+        <% current_user.vault_ids.each do |id_vault| %>
         <option value="<%= id_vault %>"> <%= Vault.find(id_vault).name %> </option>
         <% end %>
     </select>

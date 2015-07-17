@@ -1,0 +1,8 @@
+<h1> checkout these pictures </h1>
+
+<% current_user.vault_ids.each do |x| %>
+  <div>
+    <img src='<%= PhotoPost.find_by(vault_id: 1).file_path %>' />
+  </div>
+  <% binding.pry %>
+<% end %> 

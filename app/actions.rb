@@ -1,10 +1,16 @@
 
 # Retrieves the current_user object before each of these paths
-['/user', '/user/text_post/new', '/user/photo_post/new', '/photoview'].each do |path|
-    before path do
-        # The session[:current_user_id] is hard coded in configure for now
-        @current_user = User.find(session[:current_user_id])
-    end
+# ['/user', '/user/text_post/new', '/user/photo_post/new', '/photo_view'].each do |path|
+#     before path do
+#         # The session[:current_user_id] is hard coded in configure for now
+#         @current_user = User.find(session[:current_user_id])
+#     end
+# end
+
+helpers do
+  def current_user
+    @current_user ||= User.find(session[:current_user_id]) if session[:current_user_id]
+  end
 end
 
 # Homepage (Root path) (optional homepage before login)
@@ -30,15 +36,15 @@ post '/login' do
   end
 end
 
-get '/photoview' do
-  erb :'photoview'
+get '/photo_view' do
+  erb :'photo_view'
 end
 
 
 # User page and setting user's vaults ===============================
 # (gets photos & text from user's vaults)
 get '/user' do
-  @current_user.vault_ids.each do |id|
+  current_user.vault_ids.each do |id|
     @photo_posts = PhotoPost.where(vault_id: id)
     @text_posts = TextPost.where(vault_id: id)
   end
@@ -84,8 +90,9 @@ post '/user/photo_post' do
     caption: params[:caption],
     file_path: params[:file_path],
     vault_id: params[:vault_id],
-    user_id: session[:current_user_id])
+    user_id: current_user.id)
   #if the post saves the user is redirected to their home page showing the new posts. 
+  # binding.pry
   if @photopost.save
     redirect '../user'
   else
