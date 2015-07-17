@@ -7,7 +7,7 @@ gem 'activesupport'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
-
+gem 'carrierwave'
 gem 'puma'
 gem 'tux'
 gem 'sqlite3'

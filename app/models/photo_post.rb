@@ -10,4 +10,5 @@ class PhotoPost < ActiveRecord::Base
   validates   :file_path,
               presence: true
 
+  mount_uploader :file_path, Uploader
 end

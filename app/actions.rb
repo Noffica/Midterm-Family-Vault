@@ -79,17 +79,10 @@ end
 # (posts the new photo)
 post '/user/photo_post' do
   #upload mechanism for photos. They are stored in the public images folder. 
-  File.open('public/images/' + params['file_path'][:filename], "w") do |f|
-    f.write(params['file_path'][:tempfile].read)
-    # the instance varilable filethingy is used to collect the file path nam
-    # and save it in the new photopost object below. This is so we can reference 
-    # a photo to a specific user if and vault id at a later date. 
-    @filethingy = 'public/images/' + params['file_path'][:filename]
-  end
   #creates a new photopost instance
   @photopost = PhotoPost.new(
     caption: params[:caption],
-    file_path: @filethingy,
+    file_path: params[:file_path],
     vault_id: params[:vault_id],
     user_id: session[:current_user_id])
   #if the post saves the user is redirected to their home page showing the new posts. 
