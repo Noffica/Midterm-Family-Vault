@@ -1,12 +1,12 @@
 <h1>So.. you'd like to add a new post?</h1>
 <hr/>
 
-  <form method="post" action="/user/text_post">
+  <form method="post" action="/user/photo_post">
     <label>Title:</label>
       <input type="text" placeholder="caption" name="caption">
     <label>Body:</label>
-      <input type="text" placeholder="Tell me something...." name="body">
-    <label> Which Vault should It go to?</label>
+      <input type="URL" placeholder="Insert URL here... SORTA..." name="file_path">
+    <label> Which Vault should this picture go to?</label>
       <select name ="vault_id">
         <% @current_user.vault_ids.each do |vault| %>
         <option value="<%= vault %>"> <%= Vault.find(vault).name %> </option>

@@ -1,6 +1,6 @@
 
 # Retrieves the current_user object before each of these paths
-['/user', '/user/text_post/new'].each do |path|
+['/user', '/user/text_post/new', '/user/photo_post/new'].each do |path|
     before path do
         # The session[:current_user_id] is hard coded in configure for now
         @current_user = User.find(session[:current_user_id])
@@ -74,13 +74,16 @@ end
 
 # (posts the new content)
 post '/user/photo_post' do
-  PhotoPost.create(
+  @photopost = PhotoPost.new(
     caption: params[:caption],
     file_path: params[:file_path],
     vault_id: params[:vault_id],
     user_id: session[:current_user_id])
-
-  redirect '../user'
+  if @photopost.save
+    redirect '../user'
+  else
+    erb :'/user/photo_post/new'
+  end
 end
 
 # (loads the submit page)
@@ -90,13 +93,16 @@ end
 
 # (posts the new content)
 post '/user/text_post' do
-  TextPost.create(
+  @textpost = TextPost.new(
     title: params[:title],
     body: params[:body],
     vault_id: params[:vault_id],
     user_id: session[:current_user_id])
-
-  redirect '../user'
+  if @textpost.save
+    redirect '../user'
+  else
+    erb :'/user/text_post/new'
+  end
 end
 
 
