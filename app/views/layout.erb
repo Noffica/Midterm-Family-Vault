@@ -1,24 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    normalize.css removes cross-browser differences in defaults, e.g.,
-    differences in how form elements appear between Firefox and IE
-    See: http://necolas.github.com/normalize.css/
-  -->
-<!--   <link rel="stylesheet" href="/stylesheets/normalize.css">
- -->  <!--
-    application.css is where you put your styles
-  -->
-<!--   <link rel="stylesheet" href="/stylesheets/application.css"> -->
 
-    <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="/css/materialize.css"  media="screen,projection"/>
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="/css/materialize.css"  media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/javascript/application.js"></script>
@@ -45,10 +34,11 @@
   <!-- Dropdown: Vaults -->
   <ul id="dropdown3" class="dropdown-content">
     <li><a href="/user">All</a></li>
-    <li><a href="/vault/1">Vault id 1</a></li>
-    <li><a href="/vault/2">Vault id 2</a></li>
-    <li><a href="/vault/4">Vault id 4</a></li>
+    <% @current_user.vault_ids.each do |id_vault| %>
+    <li><a href="/vault/<%= id_vault %>"><%= Vault.find(id_vault).name %></a></li>
+    <% end %>
   </ul>
+
 
   <div class="navbar-fixed">
     <nav>
@@ -77,8 +67,19 @@
 
   <%= yield %>
 
+  
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="/js/materialize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.grid').masonry({
+        // options
+        itemSelector: '.grid-item',
+        columnWidth: 440
+      });
+    });
+  </script>
 </body>
 </html>
