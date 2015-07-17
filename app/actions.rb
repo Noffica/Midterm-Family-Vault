@@ -19,14 +19,14 @@ end
 post '/login' do
   # binding.pry
   if logging_user = User.find_by(email: params[:email])
-    # if params[:password] == logging_user.password 
+    if params[:password] == logging_user.password 
       session[:current_user_id] = logging_user.id
       redirect '/user'
-  #   else
-  #     erb :'login'
-  #   end 
-  # else
-    # erb :'login'
+    else
+      erb :'login'
+    end 
+  else
+    erb :'login'
   end
 end
 

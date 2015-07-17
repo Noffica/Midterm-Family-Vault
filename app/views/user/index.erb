@@ -1,10 +1,31 @@
-<h1>Welcome to Vault</h1>
-<h4>You are logged in as <%= @current_user.name %>.</h4>
+<h3>Welcome to Vaulty</h3>
+<p>You are logged in as <%= @current_user.name %>.</p>
+
+
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
+</ul>
+
+<nav>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Vaulty</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+  </div>
+</nav>
 
 
 <!-- User adds new content -->
 <div>
-  <h3>+ Add new:</h3>
+  <h4>+ Add new:</h4>
   <select onChange="window.location.href=this.value">
     <option value="">+ Add New</option>
     <option value="user/photo_post/new">Photo</option>
@@ -18,13 +39,13 @@
 
 <!-- User join a vault (UserVaultRelation) -->
 <div>
-  <h4><a href="user/user_vault/new" role="button">Join a Vault</a></h4>
+  <h5><a href="user/user_vault/new" role="button">Join a Vault</a></h5>
 </div>
 
 
 <!-- Show content from users all vaults -->
 <div>
-  <h3>Show all content from vaults you belong to:</h3>
+  <h4>Show all content from vaults you belong to:</h4>
   <% @photo_posts.each do |photo_post| %>
     <div class="photo_posts">
       <h4><%=  photo_post.caption %></h4>
@@ -39,7 +60,7 @@
 <!--     NEED FIX! -->
 <!-- Adding the option to go to individual vault pages -->
 <div>
-  <h3>Choose a single vault you want to see:</h3>
+  <h4>Choose a single vault you want to see:</h4>
     <select onChange="window.location.href=this.value">
     <option value="user">All Vaults</option>
 
@@ -51,5 +72,5 @@
 <hr/>
 
 <div>
-  <h4><a href="../logout" role="button">Logout</a></h4>
+  <h5><a href="../logout" role="button">Logout</a></h5>
 </div>
