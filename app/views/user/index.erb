@@ -36,7 +36,7 @@
             <span class="card-title blue-text text-darken-3"><%=  post[:title] %></span>
               <p><%= post[:body] %></p>
           </div>
-          <div class="card-action blue white-text">
+          <div class="card-action <%= Vault.find(post[:vault_id])[:color]%> white-text">
             <%=  User.find(post[:user_id]).name %>, <%=  Vault.find(post[:vault_id]).name %> <br> <%= post[:created_at].to_date %>
           </div>
         </div>
