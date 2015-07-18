@@ -29,6 +29,17 @@ post '/login' do
 end
 
 get '/photo_view' do
+  #Below logic to replace the /user route logic for sorting. 
+  @photo_posts = []
+  @text_posts = []
+  @all_posts = []
+
+  current_user.vault_ids.each do |id|
+    @photo_posts += (PhotoPost.where(vault_id: id))
+    @text_posts += (TextPost.where(vault_id: id))
+  end
+ 
+  @all_posts = @text_posts.concat @photo_posts
   erb :'photo_view'
 end
 
@@ -39,12 +50,16 @@ get '/user' do
 
   @photo_posts = []
   @text_posts = []
+  @all_posts = []
+
 
   current_user.vault_ids.each do |id|
     @photo_posts += (PhotoPost.where(vault_id: id))
     @text_posts += (TextPost.where(vault_id: id))
 
   end
+  @all_posts << @photo_posts
+  @all_posts << @text_posts
   erb :'user/index'
 end
 

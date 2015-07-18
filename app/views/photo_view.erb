@@ -1,12 +1,35 @@
 <h1> checkout these pictures </h1>
 
-
-<% current_user.vault_ids.each do |x| %>
-  <% if PhotoPost.find_by(vault_id: x) %>
-    <% PhotoPost.where(vault_id: x).find_each do |post| %>
-      <div>
-        <img src='/images/<%= post[:file_path] %>' />
+<% sorted_by_date = @all_posts.sort_by { |type| type[:created_at]} %>
+  <% sorted_by_date.reverse.each do |post| %>
+    <% if post.is_a?(PhotoPost) %>
+      <div class="grid-item">
+        <div class="card hoverable">
+          <div class="card-image">
+            <img src='/images/<%= post[:file_path] %>' />
+          </div>
+<!--             <div class="card-content">
+              <h5></h5>
+            </div> -->
+          <div class="card-action">
+            <a href="#"><%= post[:caption] %></a>
+          </div>
+        </div>
       </div>
+
+    <%else %>
+        <!-- <div class="row"> -->
+      <div class="grid-item">
+        <div class="card white hoverable">
+          <div class="card-content">
+            <span class="card-title blue-text text-darken-3"><%=  post[:title] %></span>
+              <p><%= post[:body] %></p>
+          </div>
+          <div class="card-action blue white-text">
+            <%=  User.find(post[:user_id]).name %>, <%=  Vault.find(post[:vault_id]).name %> <br> <%= post[:created_at].to_date %>
+          </div>
+        </div>
+      </div>
+        <!-- </div> -->
     <% end %>
-  <% end %>
-<% end %>
+  <%end %>
