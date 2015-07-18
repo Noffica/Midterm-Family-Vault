@@ -27,8 +27,10 @@
   <!-- Dropdown: Vaults -->
   <ul id="dropdown3" class="dropdown-content">
     <li><a href="/user">All</a></li>
-    <% current_user.vault_ids.each do |id_vault| %>
-    <li><a href="/vault/<%= id_vault %>"><%= Vault.find(id_vault).name %></a></li>
+    <% if current_user.vault_ids %>
+      <% current_user.vault_ids.each do |id_vault| %>
+      <li><a href="/vault/<%= id_vault %>"><%= Vault.find(id_vault).name %></a></li>
+      <% end %>
     <% end %>
   </ul>
 
