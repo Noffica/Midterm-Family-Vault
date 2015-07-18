@@ -7,24 +7,24 @@ end
 
 # Homepage (Root path) (optional homepage before login)
 get '/' do
-  erb :index
+  redirect 'login'
 end
 
 get '/login' do
-  erb :'login'
+  erb :'login', :layout => false
 end
 
 post '/login' do
   # binding.pry
   if logging_user = User.find_by(email: params[:email])
-    # if params[:password] == logging_user.password 
+    if params[:password] == logging_user.password 
       session[:current_user_id] = logging_user.id
       redirect '/user'
-  #   else
-  #     erb :'login'
-  #   end 
-  # else
-    # erb :'login'
+    else
+      erb :'login'
+    end 
+  else
+    erb :'login'
   end
 end
 
@@ -36,9 +36,14 @@ end
 # User page and setting user's vaults ===============================
 # (gets photos & text from user's vaults)
 get '/user' do
+
+  @photo_posts = []
+  @text_posts = []
+
   current_user.vault_ids.each do |id|
-    @photo_posts = PhotoPost.where(vault_id: id)
-    @text_posts = TextPost.where(vault_id: id)
+    @photo_posts += (PhotoPost.where(vault_id: id))
+    @text_posts += (TextPost.where(vault_id: id))
+
   end
   erb :'user/index'
 end
@@ -139,10 +144,15 @@ post '/vault' do
 end
 
 # (loads a vault of a user that he/she has access to)
+# To DO: Need to check if user has access!!
 get '/vault/:id' do
+  @photo_posts = []
+  @text_posts = []
 
-  # To DO: Need to check if user has access!!
   @vault = Vault.find(params[:id])
+  @photo_posts += (PhotoPost.where(vault_id: params[:id]))
+  @text_posts += (TextPost.where(vault_id: params[:id]))
+
 
   # if the vault id doesn't exist, give 404 not found error
   if @vault
