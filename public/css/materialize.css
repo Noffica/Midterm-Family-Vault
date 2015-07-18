@@ -8139,7 +8139,8 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em; } }
 
 
-.grid-item { width: 420px; }
+.grid-item { width: 200px; }
+.grid-item--width2 { width: 400px; }
 
 
 /* ==========================================================================
