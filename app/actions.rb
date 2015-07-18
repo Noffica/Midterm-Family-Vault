@@ -56,10 +56,9 @@ get '/user' do
   current_user.vault_ids.each do |id|
     @photo_posts += (PhotoPost.where(vault_id: id))
     @text_posts += (TextPost.where(vault_id: id))
-
   end
-  @all_posts << @photo_posts
-  @all_posts << @text_posts
+
+  @all_posts = @text_posts.concat @photo_posts
   erb :'user/index'
 end
 
@@ -164,11 +163,12 @@ end
 get '/vault/:id' do
   @photo_posts = []
   @text_posts = []
+  @all_posts = []
 
   @vault = Vault.find(params[:id])
   @photo_posts += (PhotoPost.where(vault_id: params[:id]))
   @text_posts += (TextPost.where(vault_id: params[:id]))
-
+  @all_posts = @text_posts.concat @photo_posts
 
   # if the vault id doesn't exist, give 404 not found error
   if @vault
