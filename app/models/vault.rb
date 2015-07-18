@@ -18,7 +18,7 @@ class Vault < ActiveRecord::Base
   # private
   #   def assign_user_to_vault
   #     UserVaultRelation.create(
-  #     user_id: session[:current_user_id], 
+  #     user_id: current_user.id, 
   #     vault: self)
   #   end 
 end
