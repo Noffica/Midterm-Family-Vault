@@ -29,6 +29,7 @@ post '/login' do
 end
 
 get '/photo_view' do
+  #Below logic to replace the /user route logic for sorting. 
   @photo_posts = []
   @text_posts = []
   @all_posts = []
