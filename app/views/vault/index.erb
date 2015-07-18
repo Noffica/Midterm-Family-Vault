@@ -31,6 +31,26 @@
         <!-- </div> -->
       <% end %>
     <% end %>
+
+
+    <% if @photo_posts %>
+      <% @photo_posts.each do |photo_post| %>
+        <div class="grid-item">
+          <div class="card hoverable">
+            <div class="card-image">
+              <img src='/images/<%= photo_post[:file_path] %>' />
+            </div>
+<!--             <div class="card-content">
+              <h5></h5>
+            </div> -->
+            <div class="card-action">
+              <a href="#"><%= photo_post[:caption] %></a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
     </div>
   </div>
 
