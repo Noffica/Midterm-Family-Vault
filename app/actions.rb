@@ -29,6 +29,17 @@ post '/login' do
 end
 
 get '/photo_view' do
+  #Below logic to replace the /user route logic for sorting. 
+  @photo_posts = []
+  @text_posts = []
+  @all_posts = []
+
+  current_user.vault_ids.each do |id|
+    @photo_posts += (PhotoPost.where(vault_id: id))
+    @text_posts += (TextPost.where(vault_id: id))
+  end
+ 
+  @all_posts = @text_posts.concat @photo_posts
   erb :'photo_view'
 end
 
@@ -39,12 +50,15 @@ get '/user' do
 
   @photo_posts = []
   @text_posts = []
+  @all_posts = []
+
 
   current_user.vault_ids.each do |id|
     @photo_posts += (PhotoPost.where(vault_id: id))
     @text_posts += (TextPost.where(vault_id: id))
-
   end
+
+  @all_posts = @text_posts.concat @photo_posts
   erb :'user/index'
 end
 
@@ -136,10 +150,11 @@ post '/vault' do
 
   # TO DO: Use callback instead in Vault class
   # sets the UserVaultRelation for the user and the created vault
-  # UserVaultRelation.create(
-  #   user_id: session[:current_user_id], 
-  #   vault: @vault)
   if @vault.save
+    UserVaultRelation.create(
+    user_id: session[:current_user_id], 
+    vault: @vault)
+
     redirect '/user'
   else
     erb :'vault/new'
@@ -153,11 +168,12 @@ end
 get '/vault/:id' do
   @photo_posts = []
   @text_posts = []
+  @all_posts = []
 
   @vault = Vault.find(params[:id])
   @photo_posts += (PhotoPost.where(vault_id: params[:id]))
   @text_posts += (TextPost.where(vault_id: params[:id]))
-
+  @all_posts = @text_posts.concat @photo_posts
 
   # if the vault id doesn't exist, give 404 not found error
   if @vault

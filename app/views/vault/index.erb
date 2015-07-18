@@ -12,44 +12,37 @@
 <div class="container">
   <h1 class="indigo-text"><%= @vault.name %></h1>
 
-<div>
-    <div class="grid">
-    <% if @text_posts %>
-      <% @text_posts.each do |text_post| %>
-        <!-- <div class="row"> -->
-          <div class="grid-item">
-            <div class="card white hoverable">
-              <div class="card-content">
-                <span class="card-title cyan-text"><%=  text_post[:title] %></span>
-                <p><%= text_post[:body] %></p>
-              </div>
-              <div class="card-action cyan white-text">
-                <%=  User.find(text_post[:user_id]).name %>, <%=  Vault.find(text_post[:vault_id]).name %> <br> <%= text_post[:created_at].to_date %>
-              </div>
-            </div>
-          </div>
-        <!-- </div> -->
-      <% end %>
-    <% end %>
+  <div>
+    <div id="grid" data-columns>
 
+    <% sorted_by_date = @all_posts.sort_by { |type| type[:created_at]} %>
+    <% sorted_by_date.reverse.each do |post| %>
+        <% if post.is_a?(PhotoPost) %>
 
-    <% if @photo_posts %>
-      <% @photo_posts.each do |photo_post| %>
-        <div class="grid-item">
-          <div class="card hoverable">
+          <div class="card hoverable grid-item">
             <div class="card-image">
-              <img src='/images/<%= photo_post[:file_path] %>' />
+              <img src='/images/<%= post[:file_path] %>' />
             </div>
-<!--             <div class="card-content">
-              <h5></h5>
-            </div> -->
-            <div class="card-action">
-              <a href="#"><%= photo_post[:caption] %></a>
+            <div class="card-action white indigo-text">
+              <strong><%= post[:caption] %></strong> <br> <%= User.find(post[:user_id]).name %>, <%= post[:created_at].to_date %>, <%=  Vault.find(post[:vault_id]).name %> 
+            </div>
+
+          </div>
+
+        <%else %>
+
+          <div class="card white hoverable grid-item">
+            <div class="card-content">
+              <span class="card-title blue-text text-darken-3"><%=  post[:title] %></span>
+                <p><%= post[:body] %></p>
+            </div>
+            <div class="card-action blue white-text">
+              <%=  User.find(post[:user_id]).name %>, <%=  Vault.find(post[:vault_id]).name %> <br> <%= post[:created_at].to_date %>
             </div>
           </div>
-        </div>
-      <% end %>
-    <% end %>
+
+        <% end %>
+    <%end %>
 
     </div>
   </div>

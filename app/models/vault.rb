@@ -11,4 +11,14 @@ class Vault < ActiveRecord::Base
 
   validates   :password,
               presence: true
+
+  # after_create :assign_user_to_vault
+
+
+  # private
+  #   def assign_user_to_vault
+  #     UserVaultRelation.create(
+  #     user_id: current_user.id, 
+  #     vault: self)
+  #   end 
 end

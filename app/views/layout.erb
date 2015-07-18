@@ -27,9 +27,11 @@
   <!-- Dropdown: Vaults -->
   <ul id="dropdown3" class="dropdown-content">
     <li><a href="/user">All</a></li>
-    <% current_user.vault_ids.each do |id_vault| %>
-    <li><a href="/vault/<%= id_vault %>"><%= Vault.find(id_vault).name %></a></li>
-    <% end %>
+    <%# if current_user.vault_ids %>
+      <% current_user.vault_ids.each do |id_vault| %>
+      <li><a href="/vault/<%= id_vault %>"><%= Vault.find(id_vault).name %></a></li>
+      <% end %>
+    <%# end %>
   </ul>
 
 
@@ -64,15 +66,8 @@
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="/js/materialize.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.grid').masonry({
-        // options
-        itemSelector: '.grid-item',
-        columnWidth: 440
-      });
-    });
-  </script>
+
+  <script src="/js/salvattore.min.js"></script>
+
 </body>
 </html>
