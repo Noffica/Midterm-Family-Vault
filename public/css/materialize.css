@@ -8139,8 +8139,45 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em; } }
 
 
-.grid-item { width: 200px; }
-.grid-item--width2 { width: 400px; }
+
+/* ==========================================================================
+   MASONRY COLUMNS 
+   ========================================================================== */
+
+/* http://salvattore.com/ */
+@media screen and (max-width: 580px){
+  #grid[data-columns]::before {
+    content: '1 .column.size-1of1';
+  }
+}
+
+@media screen and (min-width: 581px) and (max-width: 1299px) {
+  #grid[data-columns]::before {
+    content: '2 .column.size-1of2';
+  }
+}
+@media screen and (min-width: 1300px) {
+  #grid[data-columns]::before {
+    content: '3 .column.size-1of3';
+  }
+}
+
+
+/* These are the classes that are going to be applied: */
+.column { float: left; padding: ;}
+.size-1of1 { width: 100%; }
+.size-1of2 { width: 50%; }
+.size-1of3 { width: 33.333%; }
+
+.grid-item { 
+  margin-right: 10px;
+  margin-left: 10px;
+ }
+
+
+/* http://masonry.desandro.com/ */
+/*.grid-item { width: 200px; }
+.grid-item--width2 { width: 400px; }*/
 
 
 /* ==========================================================================

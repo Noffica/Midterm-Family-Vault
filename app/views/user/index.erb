@@ -13,14 +13,13 @@
 <div class="container">
   <!-- Show content from users all vaults -->
   <div>
-    <div class="grid">
-
+    <div id="grid" data-columns>
 
     <% if @text_posts %>
       <% @text_posts.each do |text_post| %>
         <!-- <div class="row"> -->
-          <div class="grid-item grid-item--width2">
-            <div class="card white hoverable">
+          
+            <div class="card white hoverable grid-item">
               <div class="card-content">
                 <span class="card-title blue-text text-darken-3"><%=  text_post[:title] %></span>
                 <p><%= text_post[:body] %></p>
@@ -29,31 +28,25 @@
                 <%=  User.find(text_post[:user_id]).name %>, <%=  Vault.find(text_post[:vault_id]).name %> <br> <%= text_post[:created_at].to_date %>
               </div>
             </div>
-          </div>
+          
         <!-- </div> -->
       <% end %>
     <% end %>
 
     <% if @photo_posts %>
       <% @photo_posts.each do |photo_post| %>
-        <div class="grid-item grid-item--width2">
-          <div class="card hoverable">
+        
+          <div class="card hoverable grid-item">
             <div class="card-image">
               <img src='/images/<%= photo_post[:file_path] %>' />
             </div>
-<!--             <div class="card-content">
-              <h5></h5>
-            </div> -->
             <div class="card-action">
               <a href="#"><%= photo_post[:caption] %></a>
             </div>
           </div>
-        </div>
+        
       <% end %>
     <% end %>
-
-
-
 
     </div>
   </div>
