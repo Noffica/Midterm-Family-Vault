@@ -15,9 +15,9 @@
   <div>
     <div class="grid">
 
-
+    
     <% if @text_posts %>
-      <% @text_posts.each do |text_post| %>
+      <% @text_posts.reverse.each do |text_post| %>
         <!-- <div class="row"> -->
           <div class="grid-item">
             <div class="card white hoverable">
@@ -35,7 +35,7 @@
     <% end %>
 
     <% if @photo_posts %>
-      <% @photo_posts.each do |photo_post| %>
+      <% @photo_posts.reverse.each do |photo_post| %>
         <div class="grid-item">
           <div class="card hoverable">
             <div class="card-image">
