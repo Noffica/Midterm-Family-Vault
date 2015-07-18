@@ -56,18 +56,23 @@ end
 # (submits form values to UserVaultRelations table)
 post '/user/user_vault' do
   @vault = Vault.find_by(name: params[:name])
+
+  @user_vault_relation = UserVaultRelation.where(vault_id: @vault.id).where(user_id: session[:current_user_id])
+  
   if @vault
-    if params[:password] == @vault.password 
+    if !@user_vault_relation
+      if params[:password] == @vault.password
+        @user_vault_relation = UserVaultRelation.create(
+          user_id:  session[:current_user_id], 
+          vault_id: @vault.id
+        )
 
-      UserVaultRelation.create(
-        user_id: session[:current_user_id], 
-        vault_id: @vault.id)
-
-      redirect '../user'
-    else
-      erb :'/user/user_vault/new'
-    end 
-  else
+        redirect '../user'
+      else
+        erb :'/user/user_vault/new'
+      end
+    end
+  else #(if the vault does not exist)
     erb :'/user/user_vault/new'
   end  
 end

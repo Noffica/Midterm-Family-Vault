@@ -1,13 +1,24 @@
 <div class="container">
 <h1 class="indigo-text">Join a Vault</h1>
 
+<!-- Error messages -->
+<% if @vault && @vault.errors.any? %>
+  <div>
+    <ul>
+      <% @vault.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <form method="post" action="/user/user_vault" class="form-horizontal">
   <div class="form-group">
     <label class="col-sm-1">Vault name:</label>
     <div class="col-xs-4">
       <input class="form-control" type="text" name="name">
     </div>
-  </div>  
+  </div>
 
   <div class="form-group">
     <label class="col-sm-1">Invitation code:</label>
