@@ -2,12 +2,37 @@
 <h1 class="indigo-text">Join a Vault</h1>
 
 <!-- Error messages -->
-<% if @vault && @vault.errors.any? %>
+<% if @vault_name_blank %>
   <div>
     <ul>
-      <% @vault.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+      <li><%= "No vault name was specified." %></li>
+    </ul>
+  </div>
+<% end %>
+
+<!-- Error messages -->
+<% if @vault_does_not_exist %>
+  <div>
+    <ul>
+      <li><%= "There is no vault by the name of <strong>#{params[:name]}</strong>." %></li>
+    </ul>
+  </div>
+<% end %>
+
+<!-- Error messages -->
+<% if @existing_user_vault_relation && @existing_user_vault_relation.any? %>
+  <div>
+    <ul>
+      <li><%= "You are already part of the <strong>#{params[:name]}</strong> vault." %></li>
+    </ul>
+  </div>
+<% end %>
+
+<!-- Error messages -->
+<% if @invitation_code_incorrect %>
+  <div>
+    <ul>
+      <li><%= "The invitation code <strong>#{params[:password]}</strong> was incorrect." %></li>
     </ul>
   </div>
 <% end %>
