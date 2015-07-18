@@ -131,10 +131,11 @@ post '/vault' do
 
   # TO DO: Use callback instead in Vault class
   # sets the UserVaultRelation for the user and the created vault
-  # UserVaultRelation.create(
-  #   user_id: session[:current_user_id], 
-  #   vault: @vault)
   if @vault.save
+    UserVaultRelation.create(
+    user_id: session[:current_user_id], 
+    vault: @vault)
+
     redirect '/user'
   else
     erb :'vault/new'
