@@ -38,8 +38,8 @@
       <% @photo_posts.each do |photo_post| %>
         <div class="grid-item">
           <div class="card hoverable">
-            <div class="card-image">
-              <img src='/images/<%= photo_post[:file_path] %>' />
+            <div class="card-image yoxview">
+              <a href="/images/<%= photo_post[:file_path] %>"> <img src='/images/<%= photo_post[:file_path] %>' />
             </div>
 <!--             <div class="card-content">
               <h5></h5>
