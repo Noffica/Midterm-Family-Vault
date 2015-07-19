@@ -3,12 +3,11 @@
 <h1 class="indigo-text">So.. you'd like to add a new Photo?</h1>
 
   <form method="post" action="/user/photo_post" enctype='multipart/form-data'>
+    <label>Photo:</label>
+    <input type='file' placeholder="Insert URL here... SORTA..." name="file_path" class="dropzone">
+    <br><br>
     <label>Title:</label>
-    <input type="text" placeholder="caption" name="caption">
-
-    <label>Body:</label>
-    <input type='file' name="file_path">
-    <br>
+    <input type="text" placeholder="caption" name="caption">    
     <label> Which Vault should this picture go to?</label>
     <div class="input-field col s12">
       <select name ="vault_id" class="browser-default">
