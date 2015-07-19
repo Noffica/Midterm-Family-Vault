@@ -69,26 +69,48 @@ end
 
 # (submits form values to UserVaultRelations table)
 post '/user/user_vault' do
-  @vault = Vault.find_by(name: params[:name])
 
-  @user_vault_relation = UserVaultRelation.where(vault_id: @vault.id).where(user_id: session[:current_user_id])
-  
-  if @vault
-    if !@user_vault_relation
-      if params[:password] == @vault.password
-        @user_vault_relation = UserVaultRelation.create(
-          user_id:  session[:current_user_id], 
-          vault_id: @vault.id
-        )
+  # If the Vault Name input field is blank, render the erb and show the relevant error.
+  if !params[:name] || params[:name].empty?
+    @vault_name_blank = true
+    erb :'/user/user_vault/new'
 
-        redirect '../user'
+  # If the Vault Name input field receives valid input, go further
+  else
+    @vault = Vault.find_by(name: params[:name])
+
+    # If the `@vault` exists, go further.
+    if @vault
+      @existing_user_vault_relation = UserVaultRelation.where(vault_id: @vault.id).where(user_id: session[:current_user_id])
+
+      # If the @existing_user_vault_relation does *not* exist (the user does not already belong to the vault), go further.
+      if @existing_user_vault_relation.empty?
+
+        # If the Invitation Code matches the vault password, go further.
+        if params[:password] == @vault.password
+          @new_user_vault_relation = UserVaultRelation.create(
+            user_id:  session[:current_user_id],
+            vault_id: @vault.id
+          )
+          redirect '../user'
+
+        # If the Invitation Code does not match the vault password, render the erb with the error.
+        else
+          @invitation_code_incorrect = true
+          erb :'/user/user_vault/new'
+        end
+
+      # If the @existing_user_vault_relation exists (the user already belongs to the vault).
       else
         erb :'/user/user_vault/new'
       end
+
+    # If the `@vault` does *not* exist.
+    else
+      @vault_does_not_exist = true
+      erb :'/user/user_vault/new'
     end
-  else #(if the vault does not exist)
-    erb :'/user/user_vault/new'
-  end  
+  end
 end
 
 
