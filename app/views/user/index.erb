@@ -23,7 +23,7 @@
           <div class="card-image">
             <img src='/images/<%= post[:file_path] %>' />
           </div>
-          <div class="card-action white indigo-text">
+          <div class="card-action white <%= Vault.find(post[:vault_id])[:color] %>-text">
             <strong><%= post[:caption] %></strong> <br> <%= User.find(post[:user_id]).name %>, <%= post[:created_at].to_date %>, <%=  Vault.find(post[:vault_id]).name %> 
           </div>
 
