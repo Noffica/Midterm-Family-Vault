@@ -190,6 +190,7 @@ end
 # (loads a vault of a user that he/she has access to)
 # To DO: Need to check if user has access!!
 get '/vault/:id' do
+
   @photo_posts = []
   @text_posts = []
   @all_posts = []
@@ -201,7 +202,7 @@ get '/vault/:id' do
 
   # if the vault id doesn't exist, give 404 not found error
   if @vault
-    erb :'vault/index'
+    erb :'vault/index', :layout => false
   else
     halt 404
   end
