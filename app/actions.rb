@@ -146,7 +146,9 @@ end
 post '/vault' do
   @vault = Vault.new(
     name: params[:name],
-    password: params[:password])
+    password: params[:password],
+    color: params[:color]
+    )
 
   # TO DO: Use callback instead in Vault class
   # sets the UserVaultRelation for the user and the created vault

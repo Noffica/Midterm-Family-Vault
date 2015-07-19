@@ -11,9 +11,9 @@
   user_9  = User.create!(name: "Legolas",    email: "legolas@rivendell.org", password: "u")
   user_10 = User.create!(name: "Gimli",      email: "gimli@gloin.net",       password: "u")
 
-  vault_1 = Vault.create!(name: "Family",        password: "v")
-  vault_2 = Vault.create!(name: "Midterm mates", password: "v")
-  vault_3 = Vault.create!(name: "In-laws",       password: "v")
+  vault_1 = Vault.create!(name: "Family",        password: "v", color: "blue")
+  vault_2 = Vault.create!(name: "Midterm mates", password: "v", color: "pink")
+  vault_3 = Vault.create!(name: "In-laws",       password: "v", color: "orange")
 
   UserVaultRelation.create!(user: user_1, vault: vault_1)
   UserVaultRelation.create!(user: user_2, vault: vault_1)
