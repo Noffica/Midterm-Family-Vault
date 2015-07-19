@@ -38,11 +38,9 @@ get '/photo_view' do
     @photo_posts += (PhotoPost.where(vault_id: id))
     @text_posts += (TextPost.where(vault_id: id))
   end
- 
   @all_posts = @text_posts.concat @photo_posts
   erb :'photo_view'
 end
-
 
 # User page and setting user's vaults ===============================
 # (gets photos & text from user's vaults)
@@ -51,7 +49,6 @@ get '/user' do
   @photo_posts = []
   @text_posts = []
   @all_posts = []
-
 
   current_user.vault_ids.each do |id|
     @photo_posts += (PhotoPost.where(vault_id: id))
@@ -69,23 +66,18 @@ end
 
 # (submits form values to UserVaultRelations table)
 post '/user/user_vault' do
-
   # If the Vault Name input field is blank, render the erb and show the relevant error.
   if !params[:name] || params[:name].empty?
     @vault_name_blank = true
     erb :'/user/user_vault/new'
-
   # If the Vault Name input field receives valid input, go further
   else
     @vault = Vault.find_by(name: params[:name])
-
     # If the `@vault` exists, go further.
     if @vault
       @existing_user_vault_relation = UserVaultRelation.where(vault_id: @vault.id).where(user_id: session[:current_user_id])
-
       # If the @existing_user_vault_relation does *not* exist (the user does not already belong to the vault), go further.
       if @existing_user_vault_relation.empty?
-
         # If the Invitation Code matches the vault password, go further.
         if params[:password] == @vault.password
           @new_user_vault_relation = UserVaultRelation.create(
@@ -93,18 +85,15 @@ post '/user/user_vault' do
             vault_id: @vault.id
           )
           redirect '../user'
-
         # If the Invitation Code does not match the vault password, render the erb with the error.
         else
           @invitation_code_incorrect = true
           erb :'/user/user_vault/new'
         end
-
       # If the @existing_user_vault_relation exists (the user already belongs to the vault).
       else
         erb :'/user/user_vault/new'
       end
-
     # If the `@vault` does *not* exist.
     else
       @vault_does_not_exist = true
@@ -157,7 +146,6 @@ post '/user/text_post' do
   end
 end
 
-
 # Creating & Accessing Vaults =======================================
 # (get vault creation form)
 get '/vault/new' do
@@ -171,7 +159,6 @@ post '/vault' do
     password: params[:password],
     color: params[:color]
     )
-
   # TO DO: Use callback instead in Vault class
   # sets the UserVaultRelation for the user and the created vault
   if @vault.save
