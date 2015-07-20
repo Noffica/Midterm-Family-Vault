@@ -9,6 +9,10 @@ require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
+require 'thin'              
+require 'mandrill'          
+require_relative '../lib/email'
+
 
 require 'pry'
 
@@ -36,3 +40,5 @@ CarrierWave.configure do |config|
   config.storage = :file
   config.root = APP_ROOT
 end
+
+

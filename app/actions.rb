@@ -179,13 +179,28 @@ post '/vault' do
     user_id: session[:current_user_id], 
     vault: @vault)
 
-    redirect '/user'
+    redirect '/vault/invite'
   else
     erb :'vault/new'
   end
-
-  
 end
+
+get '/vault/invite' do
+  erb :'/vault/invite'
+end
+
+post '/vault/invite' do
+  redirect ('/send/' + params[:email])
+end
+
+
+get '/send/:email' do
+  m = MyEmailer.new
+  v = Vault.last
+  m.send(params[:email], current_user.name, v.name, v.password)
+  redirect '/user'
+end
+
 
 # (loads a vault of a user that he/she has access to)
 # To DO: Need to check if user has access!!
@@ -204,7 +219,7 @@ get '/vault/:id' do
   if @vault
     erb :'vault/index', :layout => false
   else
-    halt 404
+    halt 404 #BUG FIX : 404 not displaying
   end
 end
 
@@ -214,4 +229,7 @@ get '/logout' do
   session.clear
   redirect '/'
 end
+
+
+
 
