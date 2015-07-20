@@ -59,6 +59,23 @@ get '/user' do
   erb :'user/index'
 end
 
+get '/user/new' do
+  erb :'user/new', :layout => false
+end
+
+post '/user/new' do
+  @new_user = User.new(
+    name: params[:name],
+    email: params[:email],
+    password: params[:password]
+  )
+  if @new_user.save && params[:password] == params[:password2]
+    redirect '../login'
+  else
+    erb :'/user/new'
+  end
+end
+
 # (loads set vault form)
 get '/user/user_vault/new' do
   erb :'user/user_vault/new'
