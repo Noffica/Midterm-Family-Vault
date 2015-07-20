@@ -11,6 +11,8 @@ gem 'carrierwave'
 gem 'puma'
 gem 'tux'
 gem 'sqlite3'
+gem 'thin'
+gem 'mandrill-api'
 
 group :development, :test do
   gem 'pry'
