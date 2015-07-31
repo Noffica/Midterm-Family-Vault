@@ -1,10 +1,10 @@
 For our midterm project we created Vaulty.
 
-A platorm that allows family memeber to selectivly share content with other memeber of their family in Vaults. A vault can have an unlimited number of users and a user can belong to as many vaults as they would like. 
+A platorm that allows family members to selectively share content with other members of their family in Vaults. A vault can have an unlimited number of users. A user can belong to as many vaults as they would like. 
 
-A user once they have loged in will see all of the content from the vaults they belong to on their homepage. To differentiate content between vaults a colour coding system was implimented. When i vault is create there are colour choices available. 
+Once a user has loged in they will be able to see all of the content from the vaults that they belong to on their homepage. To differentiate content between vaults a colour coding system was implimented. When a vault is created there are colour choices available. 
 
-This project has many ActiveRecord calls and writing. We implimented the carrierwave, thin, and mandrill Gem's to improve the functionality of our app. We implimented to Materialize styling library for our front end viewing and layout. 
+This project has many ActiveRecord calls and writes. We implimented the carrierwave, thin, and mandrill Gem's to improve the functionality of our app. We implimented the Materialize styling library for our front end viewing and layout. 
 
 
 ## Getting Started
