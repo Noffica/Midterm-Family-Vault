@@ -17,12 +17,13 @@ A platorm that allows family members to selectively share content with other mem
 - Once a user is logged in, they shall be able to see all the content from all vaults to which they belong.
 - In order to differentiate content between vaults, a colour coding system was implimented. When a vault is created there are colour choices available.
 
-### Frameworks employed
+### Frameworks and Library employed
 - ActiveRecord
 - Rails
-- [YoxView jQuery image viewer plugin](http://www.yoxigen.com/yoxview/)
 - Ruby gems
   - `carrierwave`
   - `thin`
   - `mandrill`
+- [YoxView jQuery image viewer plugin](http://www.yoxigen.com/yoxview/)
+- [Salvattore jQuery Masonry display] (http://salvattore.com/)
 - Materialize styling library for our front end, viewing and layout
