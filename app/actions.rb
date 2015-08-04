@@ -178,8 +178,8 @@ end
 
 post '/vault/invite' do
   redirect ('/send/' + params[:email])
+  # put line 185 - 188 here?
 end
-
 
 get '/send/:email' do
   m = MyEmailer.new
