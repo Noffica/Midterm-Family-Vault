@@ -10,11 +10,11 @@ gem 'sinatra-activerecord'
 gem 'carrierwave'
 gem 'puma'
 gem 'tux'
-gem 'sqlite3'
 gem 'thin'
 gem 'mandrill-api'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'pry'
   gem 'shotgun'
 end
