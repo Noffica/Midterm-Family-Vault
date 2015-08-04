@@ -1,6 +1,3 @@
-## Getting Started
-
-
 # Vaulty
 A platform that allows family members to selectively share content with other members of their family in Vaults. This was our midterm project.
 
@@ -12,6 +9,8 @@ It has been deployed on the web here:
 1. `bundle install`
 1. `shotgun -p 3000 -o 0.0.0.0`
 1. Visit `http://localhost:3000/` in your browser
+
+----
 
 ### Content types currently supported
 - text
