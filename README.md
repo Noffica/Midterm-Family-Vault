@@ -1,5 +1,3 @@
-[vaulty.herokuapp.com](https://vaulty.herokuapp.com/)
-
 ## Getting Started
 
 1. `bundle install`
@@ -8,6 +6,8 @@
 
 # Vaulty
 A platorm that allows family members to selectively share content with other members of their family in Vaults. This was our midterm project.
+
+[vaulty.herokuapp.com](https://vaulty.herokuapp.com/)
 
 ### Content types currently supported
 - text
