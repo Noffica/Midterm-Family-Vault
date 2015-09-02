@@ -29,7 +29,7 @@ It has been deployed on the web here:
 
 ### Frameworks and Library employed
 - ActiveRecord
-- Rails
+- Sinatra
 - Ruby gems
   - `carrierwave`
   - `thin`
