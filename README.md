@@ -1,10 +1,6 @@
 # Vaulty
 A platform that allows family members to selectively share content with other members of their family in Vaults. This was our midterm project.
 
-It has been deployed on the web here:
-
-[vaulty.herokuapp.com](https://vaulty.herokuapp.com/)
-
 ## Local deployment option (_recommended_)
 1. Ensure Ruby `v2.1` (or higher) is installed.
 1. Ensure the [`bundler`](http://bundler.io) gem is installed
