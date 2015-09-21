@@ -5,10 +5,15 @@ It has been deployed on the web here:
 
 [vaulty.herokuapp.com](https://vaulty.herokuapp.com/)
 
-## Local deployment option
-1. `bundle install`
-1. `shotgun -p 3000 -o 0.0.0.0`
+## Local deployment option (_recommended_)
+1. Ensure Ruby `v2.1` (or higher) is installed.
+1. Ensure the [`bundler`](http://bundler.io) gem is installed
+1. Run `bundle install`
+1. Run the following command(s) to setup the database with seed data:
+  1. `bundle exec rake db:drop && bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rake db:seed`
+1. Run `shotgun -p 3000 -o localhost` to launch the server
 1. Visit `http://localhost:3000/` in your browser
+1. Check the `/db/seeds.rb` file for accounts setup by the seed data.
 
 ----
 
@@ -24,7 +29,7 @@ It has been deployed on the web here:
 
 ### Frameworks and Library employed
 - ActiveRecord
-- Rails
+- Sinatra
 - Ruby gems
   - `carrierwave`
   - `thin`
